@@ -4,16 +4,15 @@
 #
 Name     : perl-DBIx-ContextualFetch
 Version  : 1.03
-Release  : 2
+Release  : 3
 URL      : https://cpan.metacpan.org/authors/id/T/TM/TMTM/DBIx-ContextualFetch-1.03.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TM/TMTM/DBIx-ContextualFetch-1.03.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libd/libdbix-contextualfetch-perl/libdbix-contextualfetch-perl_1.03-4.debian.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Artistic-1.0 GPL-1.0
-Requires: perl-DBIx-ContextualFetch-license
-Requires: perl-DBIx-ContextualFetch-man
-Requires: perl(DBI)
+Requires: perl-DBIx-ContextualFetch-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : perl(DBI)
 
 %description
@@ -21,6 +20,15 @@ NAME
 DBIx::ContextualFetch - Add contextual fetches to DBI
 SYNOPSIS
 my $dbh = DBI->connect(...., { RootClass => "DBIx::ContextualFetch" });
+
+%package dev
+Summary: dev components for the perl-DBIx-ContextualFetch package.
+Group: Development
+Provides: perl-DBIx-ContextualFetch-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-DBIx-ContextualFetch package.
+
 
 %package license
 Summary: license components for the perl-DBIx-ContextualFetch package.
@@ -30,19 +38,11 @@ Group: Default
 license components for the perl-DBIx-ContextualFetch package.
 
 
-%package man
-Summary: man components for the perl-DBIx-ContextualFetch package.
-Group: Default
-
-%description man
-man components for the perl-DBIx-ContextualFetch package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n DBIx-ContextualFetch-1.03
-mkdir -p %{_topdir}/BUILD/DBIx-ContextualFetch-1.03/deblicense/
+cd ..
+%setup -q -T -D -n DBIx-ContextualFetch-1.03 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/DBIx-ContextualFetch-1.03/deblicense/
 
 %build
@@ -67,12 +67,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-DBIx-ContextualFetch
-cp deblicense/copyright %{buildroot}/usr/share/doc/perl-DBIx-ContextualFetch/deblicense_copyright
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-DBIx-ContextualFetch
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-DBIx-ContextualFetch/deblicense_copyright
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -81,12 +81,12 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/DBIx/ContextualFetch.pm
+/usr/lib/perl5/vendor_perl/5.26.1/DBIx/ContextualFetch.pm
 
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-DBIx-ContextualFetch/deblicense_copyright
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/DBIx::ContextualFetch.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-DBIx-ContextualFetch/deblicense_copyright
