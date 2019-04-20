@@ -4,11 +4,11 @@
 #
 Name     : perl-DBIx-ContextualFetch
 Version  : 1.03
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/T/TM/TMTM/DBIx-ContextualFetch-1.03.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TM/TMTM/DBIx-ContextualFetch-1.03.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libd/libdbix-contextualfetch-perl/libdbix-contextualfetch-perl_1.03-4.debian.tar.xz
-Summary  : No detailed summary available
+Summary  : Add contextual fetches to DBI
 Group    : Development/Tools
 License  : Artistic-1.0 GPL-1.0
 Requires: perl-DBIx-ContextualFetch-license = %{version}-%{release}
@@ -25,6 +25,7 @@ my $dbh = DBI->connect(...., { RootClass => "DBIx::ContextualFetch" });
 Summary: dev components for the perl-DBIx-ContextualFetch package.
 Group: Development
 Provides: perl-DBIx-ContextualFetch-devel = %{version}-%{release}
+Requires: perl-DBIx-ContextualFetch = %{version}-%{release}
 
 %description dev
 dev components for the perl-DBIx-ContextualFetch package.
@@ -43,7 +44,7 @@ license components for the perl-DBIx-ContextualFetch package.
 cd ..
 %setup -q -T -D -n DBIx-ContextualFetch-1.03 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/DBIx-ContextualFetch-1.03/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/DBIx-ContextualFetch-1.03/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
