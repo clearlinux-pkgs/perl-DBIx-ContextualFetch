@@ -4,7 +4,7 @@
 #
 Name     : perl-DBIx-ContextualFetch
 Version  : 1.03
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/T/TM/TMTM/DBIx-ContextualFetch-1.03.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TM/TMTM/DBIx-ContextualFetch-1.03.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libd/libdbix-contextualfetch-perl/libdbix-contextualfetch-perl_1.03-4.debian.tar.xz
@@ -80,7 +80,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-DBIx-ContextualFetch
-cp %{_builddir}/DBIx-ContextualFetch-1.03/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-DBIx-ContextualFetch/1ab94319440a93bc75813c4608968f8cb083268e
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-DBIx-ContextualFetch/1ab94319440a93bc75813c4608968f8cb083268e
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -104,4 +104,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/DBIx/ContextualFetch.pm
+/usr/lib/perl5/vendor_perl/5.30.2/DBIx/ContextualFetch.pm
