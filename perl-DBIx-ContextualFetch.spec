@@ -4,7 +4,7 @@
 #
 Name     : perl-DBIx-ContextualFetch
 Version  : 1.03
-Release  : 15
+Release  : 16
 URL      : https://cpan.metacpan.org/authors/id/T/TM/TMTM/DBIx-ContextualFetch-1.03.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TM/TMTM/DBIx-ContextualFetch-1.03.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libd/libdbix-contextualfetch-perl/libdbix-contextualfetch-perl_1.03-4.debian.tar.xz
@@ -104,4 +104,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/DBIx/ContextualFetch.pm
+/usr/lib/perl5/vendor_perl/5.32.1/DBIx/ContextualFetch.pm
