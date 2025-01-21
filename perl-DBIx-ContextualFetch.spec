@@ -4,7 +4,7 @@
 #
 Name     : perl-DBIx-ContextualFetch
 Version  : 1.03
-Release  : 27
+Release  : 28
 URL      : https://cpan.metacpan.org/authors/id/T/TM/TMTM/DBIx-ContextualFetch-1.03.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TM/TMTM/DBIx-ContextualFetch-1.03.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libd/libdbix-contextualfetch-perl/libdbix-contextualfetch-perl_1.03-4.debian.tar.xz
